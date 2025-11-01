@@ -16,6 +16,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    if (password.length < 8) {
+      return NextResponse.json(
+        {error: 'Password must be at least 8 characters long'},
+        {status: 400}
+      );
+    }
+
     // Check if user already exists
     const existingUser = await prisma.user.findUnique({
       where: { email }

@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import NavbarWithLogout from "./NavbarWithLogout";
+import Footer from './Footer';
 
 interface WelcomePageProps {
   user: {
@@ -20,6 +21,13 @@ export default function WelcomePage({ user, onLogout }: WelcomePageProps) {
   // Extract name from email (before @)
   const userName = user.email.split('@')[0];
   const userRole = user.role;
+  const [activeSection, setActiveSection] = useState('home');
+  const aboutUsRef = useRef<HTMLDivElement>(null);
+  const researchRef = useRef<HTMLDivElement>(null);
+  const activitiesRef = useRef<HTMLDivElement>(null);
+  const lecturersRef = useRef<HTMLDivElement>(null);
+  const assistantsRef = useRef<HTMLDivElement>(null);
+  const contactUsRef = useRef<HTMLDivElement>(null);
 
   return (
     <main className="min-h-screen bg-[#FAF6EF] flex flex-col text-[#1a1a1a] relative">
@@ -117,7 +125,28 @@ export default function WelcomePage({ user, onLogout }: WelcomePageProps) {
             {["About us", "Research", "Activities", "Lecturers", "Assistants", "Contacts"].map((item, index) => (
               <motion.a
                 key={item}
-                href="#"
+                onClick={() => {
+                  if (item === "About us") {
+                    aboutUsRef.current?.scrollIntoView({ behavior: 'smooth' });
+                    setActiveSection('about');
+                  } else if (item == "Research") {
+                    researchRef.current?.scrollIntoView({ behavior: 'smooth'});
+                    setActiveSection('about');
+                  } else if (item == "Activities") {
+                    activitiesRef.current?.scrollIntoView({ behavior: 'smooth'});
+                    setActiveSection('activities');
+                  } else if (item == "Lecturers") {
+                    lecturersRef.current?.scrollIntoView({ behavior: 'smooth'});
+                    setActiveSection('lecturers');
+                  } else if (item == "Assistants") {
+                    assistantsRef.current?.scrollIntoView({ behavior: 'smooth'});
+                    setActiveSection('assistants');
+                  } else if (item == "Contacts") {
+                    contactUsRef.current?.scrollIntoView({ behavior: 'smooth'});
+                    setActiveSection('contacts');
+                  }
+                }}
+                style={{ cursor: 'pointer' }}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.4, delay: 1.0 + (index * 0.1) }}
@@ -130,26 +159,39 @@ export default function WelcomePage({ user, onLogout }: WelcomePageProps) {
           </motion.div>
         </motion.aside>
 
-        {/* ====== MAIN CONTENT ====== */}
+        {/* User Info Card */}
         <motion.main 
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
           className=" flex-1 relative  mt-10 md:mt-30  bg-[#FAF6EF]"
         >
+
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1.4 }}
+          className="bg-white p-4 rounded-lg shadow-md border-l-4 border-[#E64A19] m-4" 
+        >
+          <p className="text-sm text-gray-600 mb-1">Currently logged in as:</p>
+          <p className="text-lg font-semibold text-[#E64A19]">{user.email}</p>
+        </motion.div>
+        
+        {/* ====== MAIN CONTENT ====== */}
           <div className="    w-full md:full mx-auto flex flex-col gap-5">
             <div className=" flex flex-col md:flex-row items-center gap-6">
               <motion.div 
-                initial={{ opacity: 0, x: -40 }}
+                initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
                 className="md:w-1/2 text-center md:text-left"
               >
+
                 <motion.h3 
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 1.0 }}
-                  className="text-2xl md:text-3xl font-bold text-[#E64A19] mb-2"
+                  className="text-2xl md:text-3xl font-bold text-[#E64A19] mb-6"
                 >
                   Welcome to Laboratorium Biomedika
                 </motion.h3>
@@ -157,22 +199,25 @@ export default function WelcomePage({ user, onLogout }: WelcomePageProps) {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 1.2 }}
-                  className="text-gray-700 text-base md:text-lg mb-4"
+                  className="text-gray-700 text-base md:text-lg"
                 >
                   Laboratorium Teknik Biomedika (Lab EB) adalah fasilitas inti di bawah Sekolah Teknik Elektro dan Informatika (STEI) Institut Teknologi Bandung (ITB) yang berperan penting dalam mendukung kegiatan akademik dan penelitian di Jurusan Teknik Biomedis.
                 </motion.p>
-                
-                {/* User Info Card */}
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 1.4 }}
-                  className="bg-white p-4 rounded-lg shadow-md border-l-4 border-[#E64A19]"
-                >
-                  <p className="text-sm text-gray-600 mb-1">Currently logged in as:</p>
-                  <p className="text-lg font-semibold text-[#E64A19]">{user.email}</p>
-                </motion.div>
               </motion.div>
+
+              <motion.div>
+                <Image
+                  src="/Labdas1.jpg"
+                  alt="Laboratorium Biomedika"
+                  width={500}
+                  height={500}
+                  className="rounded-lg shadow-md object-cover w-full"
+                />
+              </motion.div>
+              </div>
+
+
+            <div className="flex flex-col md:flex-row-reverse items-center gap-10">
               <motion.div 
                 initial={{ opacity: 0, x: 40 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -183,21 +228,436 @@ export default function WelcomePage({ user, onLogout }: WelcomePageProps) {
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.3 }}
                 >
+
+                {/* === ABOUT US === */}
+                <motion.div
+                  ref={aboutUsRef}
+                  initial={{ opacity: 0, x: 40, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="mt- px-6 -ml-15 mr-5"
+                >
+                
+                  <motion.h3 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 1.0 }}
+                    className="text-2xl md:text-3xl font-bold text-[#E64A19] mb-6"
+                  >
+                  About Us
+                  </motion.h3>
+
+                <motion.p 
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 1.2 }}
+                  className="text-gray-700 text-base md:text-lg mb-4"
+                >
+                  Laboratorium Teknik Biomedis memiliki tujuan utama untuk memfasilitasi mahasiswa Teknik Biomedis dalam melakukan pembelajaran, penelitian, dan pengembangan alat-alat Teknik Biomedis tercanggih untuk mengedepankan kemajuan teknologi dalam dunia kesehatan
+                </motion.p>
+                </motion.div>
+                </motion.div>
+              </motion.div>
+
+              <motion.div
+                initial={{opacity: 0, x:-20}}
+                animate={{opacity: 1, x: 0}}
+                transition={{duration: 0.8, delay: 0.2}}
+                className="md:w-1/2"
+              >
                   <Image
-                    src="/GambarLab1.png"
+                    src="/Labdas3.jpg"
                     alt="Laboratorium Biomedika"
-                    width={1000}
-                    height={1000}
-                    className="object-cover "
+                    width={500}
+                    height={500}
+                    className="rounded-lg object-cover "
                   />
+              </motion.div>
+            </div>
+
+            <div className="flex flex-col md:flex-row-reverse items-center gap-10">
+              <motion.div
+                initial={{opacity: 0, x:-20}}
+                animate={{opacity: 1, x: 0}}
+                transition={{duration: 0.8, delay: 0.2}}
+                className="md:w-1/2"
+              >
+                  <Image
+                    src="/Labdas2.jpg"
+                    alt="Laboratorium Biomedika"
+                    width={500}
+                    height={500}
+                    className="rounded-lg object-cover "
+                  />
+              </motion.div>
+
+              <motion.div 
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 1.0 }}
+                className="md:w-1/2 flex justify-center"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                >
+
+                {/* === Research === */}
+                <motion.div
+                  ref={researchRef}
+                  initial={{ opacity: 0, x: 40, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="mt- px-6 -ml-15 mr-5"
+                >
+                
+                  <motion.h3 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 1.0 }}
+                    className="text-2xl md:text-3xl font-bold text-[#E64A19] mb-6"
+                  >
+                  Research
+                  </motion.h3>
+
+                <motion.p 
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 1.2 }}
+                  className="text-gray-700 text-base md:text-lg mb-4"
+                >
+                  Laboratorium Teknik Biomedis memiliki tujuan utama untuk memfasilitasi mahasiswa Teknik Biomedis dalam melakukan pembelajaran, penelitian, dan pengembangan alat-alat Teknik Biomedis tercanggih untuk mengedepankan kemajuan teknologi dalam dunia kesehatan
+                </motion.p>
+                </motion.div>
                 </motion.div>
               </motion.div>
             </div>
 
+            <div className="flex flex-col md:flex-row-reverse items-center gap-10">
+              <motion.div 
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 1.0 }}
+                className="md:w-1/2 flex justify-center"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                >
+
+                {/* === Activities === */}
+                <motion.div
+                  ref={activitiesRef}
+                  initial={{ opacity: 0, x: 40, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="mt- px-6 -ml-15 mr-5"
+                >
+                
+                  <motion.h3 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 1.0 }}
+                    className="text-2xl md:text-3xl font-bold text-[#E64A19] mb-6"
+                  >
+                  Activities
+                  </motion.h3>
+
+                <motion.p 
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 1.2 }}
+                  className="text-gray-700 text-base md:text-lg mb-4"
+                >
+                 Menjadi tempat mahasiswa menggabungkan ilmu teknik dan medis untuk menciptakan inovasi di bidang kesehatan. Di sini, dilakukan riset dan pengembangan alat medis seperti sensor biometrik, perangkat rehabilitasi, hingga sistem monitoring pasien berbasis teknologi digital. Melalui kolaborasi lintas disiplin, lab ini mendorong lahirnya solusi kreatif yang dapat meningkatkan kualitas layanan kesehatan di Indonesia dan dunia.
+                </motion.p>
+                </motion.div>
+                </motion.div>
+              </motion.div>
+
+              <motion.div
+                initial={{opacity: 0, x:-20}}
+                animate={{opacity: 1, x: 0}}
+                transition={{duration: 0.8, delay: 0.2}}
+                className="md:w-1/2"
+              >
+                  <Image
+                    src="/labdas4.jpeg"
+                    alt="Laboratorium Biomedika"
+                    width={500}
+                    height={500}
+                    className="rounded-lg object-cover "
+                  />
+              </motion.div>
+            </div>
+
+            <div className="flex flex-col md:flex-row-reverse items-center gap-10">
+              <motion.div
+                initial={{opacity: 0, x:-20}}
+                animate={{opacity: 1, x: 0}}
+                transition={{duration: 0.8, delay: 0.2}}
+                className="w-full" >
+              
+                  <motion.h3 
+                  ref = {lecturersRef}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 1.0 }}
+                    className="text-2xl md:text-3xl font-bold text-[#E64A19] mb-6"
+                  >
+                  Lecturers
+                  </motion.h3>
+
+              </motion.div>
+            </div>
+
+            <div className="flex flex-col md:flex-row-reverse items-center gap-10">
+              <motion.div
+                initial={{opacity: 0, x:-20}}
+                animate={{opacity: 1, x: 0}}
+                transition={{duration: 0.8, delay: 0.2}}
+                className="w-full" >
+
+                </motion.div>
+              <motion.div
+                initial={{opacity:0, x:-20}}
+                animate={{opacity:1, x:0}}
+                transition={{duration: 0.8, delay:0.2}}
+                className="md:w-full"
+                >
+                  <Image
+                    src="/Agung-Wahyu-Thumbnail.jpg"
+                    alt="agung-wahyu"
+                    width={250}
+                    height={250}
+                    className="rounded-lg object-cover "
+                  />
+                  <p className="text-gray-700">
+                      Agung Wahyu Setiawan, Dr. Ir. S.T., M.T., I.P.M., ASEAN Eng.
+                  </p>
+              </motion.div>
+
+              <motion.div
+                initial={{opacity:0, x:-20}}
+                animate={{opacity:1, x:0}}
+                transition={{duration: 0.8, delay:0.2}}
+                className="md:w-full"
+                >
+                  <Image
+                    src="/Allya-Paramita-Thumbnail.jpg"
+                    alt="allya-paramita"
+                    width={250}
+                    height={250}
+                    className="rounded-lg object-cover "
+                  />
+
+                  <p className="text-gray-700"> Allya Paramita Koesoema, S.T., M.T., Ph.D.</p>
+              </motion.div>
+
+              <motion.div
+                initial={{opacity:0, x:-20}}
+                animate={{opacity:1, x:0}}
+                transition={{duration: 0.8, delay:0.2}}
+                className="md:w-full"
+                >
+                  <Image
+                    src="/Andriyan-Bayu-Thumbnail.jpg"
+                    alt="andriyan-bayu"
+                    width={250}
+                    height={250}
+                    className="rounded-lg object-cover "
+                  />
+
+                  <p className="text-gray-700"> Prof. Andriyan Bayu Suksmono, M.T., Ph.D.</p>
+              </motion.div>
+
+              <motion.div
+                initial={{opacity:0, x:-20}}
+                animate={{opacity:1, x:0}}
+                transition={{duration: 0.8, delay:0.2}}
+                className="md:w-full"
+                >
+                  <Image
+                    src="/Astri-Handayani-Thumbnail.jpg"
+                    alt="astri-handayani"
+                    width={250}
+                    height={250}
+                    className="rounded-lg object-cover "
+                  />
+
+                  <p className="text-gray-700"> Astri Handayani, IR. S.T., M.T.</p>
+              </motion.div>
+
+              <motion.div
+                initial={{opacity:0, x:-20}}
+                animate={{opacity:1, x:0}}
+                transition={{duration: 0.8, delay:0.2}}
+                className="md:w-full"
+                >
+                  <Image
+                    src="/M-Shiddiq-Thumbnail.jpg"
+                    alt="shiddiq"
+                    width={250}
+                    height={250}
+                    className="rounded-lg object-cover "
+                  />
+
+                  <p className="text-gray-700"> M Shiddiq Sayyid Hashuro, S.T., M.Eng., Ph.D.</p>
+              </motion.div>
+
+            </div>
+
+            <div className="flex flex-col md:flex-row-reverse items-center gap-10">
+              <motion.div
+                initial={{opacity:0, x:-20}}
+                animate={{opacity:1, x:0}}
+                transition={{duration: 0.8, delay:0.2}}
+                className="md:w-full"
+                >
+                  <Image
+                    src="/Beni-RIo-Thumbnail.jpg"
+                    alt="beni-rio"
+                    width={250}
+                    height={250}
+                    className="rounded-lg object-cover "
+                  />
+
+                  <p className="text-gray-700"> Beni Rio Hermanto, DR. S.T.,M.M.</p>
+              </motion.div>
+
+              <motion.div
+                initial={{opacity:0, x:-20}}
+                animate={{opacity:1, x:0}}
+                transition={{duration: 0.8, delay:0.2}}
+                className="md:w-full"
+                >
+                  <Image
+                    src="/Doni-Danudirjo-Thumbnail.jpg"
+                    alt="doni"
+                    width={250}
+                    height={250}
+                    className="rounded-lg object-cover "
+                  />
+
+                  <p className="text-gray-700"> Donny Danudirdjo, S.T., M.T., Ph.D.</p>
+              </motion.div>
+
+              <motion.div
+                initial={{opacity:0, x:-20}}
+                animate={{opacity:1, x:0}}
+                transition={{duration: 0.8, delay:0.2}}
+                className="md:w-full"
+                >
+                  <Image
+                    src="/Habibur-M-Thumbnail.jpg"
+                    alt="habibur"
+                    width={250}
+                    height={250}
+                    className="rounded-lg object-cover "
+                  />
+
+                  <p className="text-gray-700"> Habibur Muhaimin, IR. S.T., M.Sc.</p>
+              </motion.div>
+
+              <motion.div
+                initial={{opacity:0, x:-20}}
+                animate={{opacity:1, x:0}}
+                transition={{duration: 0.8, delay:0.2}}
+                className="md:w-full"
+                >
+                  <Image
+                    src="/Hasballah-Z-Thumbnail.jpg"
+                    alt="hasballah"
+                    width={250}
+                    height={250}
+                    className="rounded-lg object-cover "
+                  />
+
+                  <p className="text-gray-700"> Hasballah Zakaria, DR. S.T., M.Sc.</p>
+              </motion.div>
+
+              <motion.div
+                initial={{opacity:0, x:-20}}
+                animate={{opacity:1, x:0}}
+                transition={{duration: 0.8, delay:0.2}}
+                className="md:w-full"
+                >
+                  <Image
+                    src="/Isa-Anshori-Thumbnail.jpg"
+                    alt="isa"
+                    width={250}
+                    height={250}
+                    className="rounded-lg object-cover "
+                  />
+
+                  <p className="text-gray-700"> Isa Anshori, S.T., M.Eng., Ph.D</p>
+              </motion.div>
+
+              <motion.div
+                initial={{opacity:0, x:-20}}
+                animate={{opacity:1, x:0}}
+                transition={{duration: 0.8, delay:0.2}}
+                className="md:w-full"
+                >
+                  <Image
+                    src="/Widyawardana-Thumbnail.jpg"
+                    alt="widya"
+                    width={250}
+                    height={250}
+                    className="rounded-lg object-cover "
+                  />
+
+                  <p className="text-gray-700"> Widyawardana Adiprawita, Dr. S.T., M.T.</p>
+              </motion.div>
+            </div>
+
+            <div className="flex flex-col md:flex-row-reverse items-center gap-10">
+              <motion.div
+                initial={{opacity: 0, x:-20}}
+                animate={{opacity: 1, x: 0}}
+                transition={{duration: 0.8, delay: 0.2}}
+                className="w-full" >
+              
+                  <motion.h3 
+                  ref = {assistantsRef}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 1.0 }}
+                    className="text-2xl md:text-3xl font-bold text-[#E64A19] mb-6"
+                  >
+                  Assistants
+                  </motion.h3>
+
+                  <p className="text-gray-700"> Coming soon! </p>
+
+              </motion.div>
+            </div>
+
+            <div className="flex flex-col md:flex-row-reverse items-center gap-10">
+              <motion.div
+                initial={{opacity: 0, x:-20}}
+                animate={{opacity: 1, x: 0}}
+                transition={{duration: 0.8, delay: 0.2}}
+                className="w-full" >
+              
+                  <motion.h3 
+                  ref = {contactUsRef}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 1.0 }}
+                    className="text-2xl md:text-3xl font-bold text-[#E64A19] mb-6"
+                  >
+                  Contacts
+                  </motion.h3>
+                  
+                  <p className="text-gray-700"> lab.eb@itb.ac.id </p>
+
+              </motion.div>
+            </div>
           </div>
         </motion.main>
       </section>
-
+      <Footer/>
     </main>
   );
 }

@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { ChevronDown, Download, Users, Target, Book, Wrench, ClipboardList, FileText, CheckCircle, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import Footer from '@/app/components/Footer';
 
 export default function PTB1Modul1New() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -368,6 +369,7 @@ export default function PTB1Modul1New() {
           </div>
         </motion.main>
       </section>
+      <Footer/>
     </main>
   );
 }

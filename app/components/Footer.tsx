@@ -1,25 +1,24 @@
 import Image from 'next/image';
+
 export default function Footer() {
   return (
     <main className="min-h-screen flex flex-col">
         
-      {/* ====== FOOTER ====== */}
       <footer className="bg-gray-100 py-8 mt-auto">
         <div className="max-w-7xl mx-auto flex justify-between items-center px-6 text-sm">
-          {/* Logo kiri */}
+          {/* Logo lab */}
           <div className="flex items-center gap-2">
-            <Image src="/logo.svg" alt="Logo" width={40} height={40} />
-            <span>bio<br />med<br />lab</span>
+            <Image src="/LogoHitam.png" alt="Logo" width={100} height={100} />
           </div>
 
           <p>© 2025 clients. All Rights Reserved.</p>
 
-          {/* Logo kanan */}
+          {/* Logo ITB */}
           <Image
-            src="/images/logo-itb.png"
+            src="/logo-itb.png"
             alt="Logo ITB"
-            width={50}
-            height={50}
+            width={100}
+            height={100}
           />
         </div>
       </footer>

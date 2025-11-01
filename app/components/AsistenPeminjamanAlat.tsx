@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Footer from './Footer'
 
 interface PeminjamanAlat {
   id: number;
@@ -266,6 +267,7 @@ export default function AsistenPeminjamanAlat() {
           ))}
         </div>
       )}
+      <Footer/>
     </div>
   );
 }

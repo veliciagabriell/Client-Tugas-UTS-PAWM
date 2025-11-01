@@ -7,6 +7,7 @@ import Navbar from "./Navbar";
 import LoginPanel from "./LoginPanel";
 import WelcomePage from "./WelcomePage";
 import NavbarWithLogout from "./NavbarWithLogout";
+import Footer from './Footer'
 
 interface ClientLayoutProps {
   children: React.ReactNode;
@@ -129,6 +130,7 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
       )}
 
       <LoginPanel isOpen={showLogin} onClose={handleLoginClose} onLoginSuccess={handleLoginSuccess} />
+    <Footer/>
     </div>
   );
 }

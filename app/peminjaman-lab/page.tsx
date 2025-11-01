@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { ChevronDown, Calendar, FileText, ChevronLeft, ChevronRight, Clock, CheckCircle, XCircle } from "lucide-react";
 import { motion } from "framer-motion";
+import Footer from "../components/Footer";
 
 interface User {
   id: number;
@@ -948,6 +949,7 @@ export default function PeminjamanLabPage() {
         </div>
       )}
 
+    <Footer/>
     </main>
   );
 }

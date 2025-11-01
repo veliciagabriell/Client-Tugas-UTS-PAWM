@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import Footer from './Footer'
 
 interface Presensi {
   id: string;
@@ -286,6 +287,7 @@ const AsistenPresensi: React.FC<AsistenPresensiProps> = ({ modulId, userRole }) 
           </div>
         </div>
       )}
+      <Footer/>
     </div>
   );
 };

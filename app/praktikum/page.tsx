@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import Footer from '../components/Footer';
 
 export default function PraktikumPage() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -295,7 +296,7 @@ export default function PraktikumPage() {
           </div>
         </motion.main>
       </section>
-
+      <Footer/>
     </main>
   );
 }

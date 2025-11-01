@@ -7,6 +7,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import AsistenTugas from '@/app/components/AsistenTugas';
 import AsistenPresensi from '@/app/components/AsistenPresensi';
+import Footer from '@/app/components/Footer';
 
 export default function PTB1Modul1() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -712,6 +713,7 @@ export default function PTB1Modul1() {
           </div>
         </motion.main>
       </section>
+      <Footer/>
     </main>
   );
 }
