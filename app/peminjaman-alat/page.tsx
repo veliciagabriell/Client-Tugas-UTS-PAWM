@@ -12,7 +12,7 @@ interface User {
 }
 
 interface Alat {
-  id: string;
+  id: number;
   nama: string;
   deskripsi: string;
   gambar: string;
@@ -22,9 +22,9 @@ interface Alat {
 }
 
 interface PeminjamanAlat {
-  id: string;
-  alatId: string;
-  userId: string;
+  id: number;
+  alatId: number;
+  userId: number;
   nama: string;
   nim: string;
   email: string;
@@ -56,7 +56,7 @@ export default function PeminjamanAlatPage() {
   const [formData, setFormData] = useState({
     nama: "",
     nim: "",
-    alatId: "",
+    alatId: 0,
     jumlah: 1,
     tanggalPinjam: "",
     tanggalKembali: "",
@@ -144,7 +144,7 @@ export default function PeminjamanAlatPage() {
         setFormData({
           nama: "",
           nim: "",
-          alatId: "",
+          alatId: 0,
           jumlah: 1,
           tanggalPinjam: "",
           tanggalKembali: "",
@@ -168,7 +168,9 @@ export default function PeminjamanAlatPage() {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: name === 'jumlah' ? parseInt(value) || 1 : value
+      [name]: (name === 'jumlah' || name === 'alatId')  
+        ? parseInt(value) || 0 
+        : value
     });
   };
 
@@ -555,7 +557,7 @@ export default function PeminjamanAlatPage() {
                   </label>
                   <select
                     name="alatId"
-                    value={formData.alatId}
+                    value={formData.alatId || ''}
                     onChange={handleInputChange}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#E64A19] focus:border-transparent"
                     required
