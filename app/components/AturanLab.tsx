@@ -1,28 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useRef } from "react";
-import { ChevronDown } from "lucide-react";
+
 import { motion } from "framer-motion";
-import NavbarWithLogout from "./NavbarWithLogout";
-import Footer from './Footer';
 
-interface WelcomePageProps {
-  user: {
-    id: number;
-    email: string;
-    role: string;
-  };
-  onLogout: () => void;
-}
 
-export default function AturanLab ({ user, onLogout }: WelcomePageProps) {
-    const userName = user.email.split('@')[0];
-    const userRole = user.role;
+
+
+export default function AturanLab () {
 
     return (
-    <main className="min-h-screen bg-[#FAF6EF]">
-            <NavbarWithLogout onLogout={onLogout} userName={userName} />
+      <div>
         <section className="relative h-screen w-full">
         <Image
           src="/LandingPic.png"
@@ -85,8 +73,6 @@ export default function AturanLab ({ user, onLogout }: WelcomePageProps) {
           </div>
         </div>
       </section>
-
-    <Footer/>
-    </main>   
+      </div>
     )
 }

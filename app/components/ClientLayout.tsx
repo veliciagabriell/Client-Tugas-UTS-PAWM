@@ -88,15 +88,18 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
     
     // For other pages, show with authenticated navbar
     return (
-      <div className="min-h-screen bg-[#FAF6EF]">
+      <div className="min-h-screen bg-[#FAF6EF] flex flex-col">
         <NavbarWithLogout userName={user.email.split('@')[0]} onLogout={handleLogout} />
-        {children}
+        <div className="flex-1">
+          {children}
+        </div>
+        <Footer/>
       </div>
     );
   }
 
   return (
-    <div className="relative overflow-hidden min-h-screen">
+    <div className="relative overflow-hidden flex flex-col min-h-screen">
       {/* Main content with slide animation */}
       <motion.div
         animate={{ 
@@ -108,13 +111,16 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
           stiffness: 300,
           mass: 0.8
         }}
-        className="min-h-screen w-full relative z-10"
+        className="flex flex-col flex-1 w-full relative z-10"
         style={{
           boxShadow: showLogin ? "2px 0 10px rgba(0,0,0,0.1)" : "none"
         }}
       >
         <Navbar onLoginClick={handleLoginClick} />
-        {children}
+        <div className="flex-1">
+          {children}
+        </div>
+        <Footer/>
       </motion.div>
 
       {/* Clickable overlay to close (no blur) */}
@@ -130,7 +136,6 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
       )}
 
       <LoginPanel isOpen={showLogin} onClose={handleLoginClose} onLoginSuccess={handleLoginSuccess} />
-    <Footer/>
     </div>
   );
 }

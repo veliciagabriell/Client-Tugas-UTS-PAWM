@@ -4,11 +4,12 @@ import { PrismaClient, StatusPeminjamanAlat } from '@/app/generated/prisma/clien
 const prisma = new PrismaClient();
 
 // PUT - Update status peminjaman alat (untuk asisten)
-export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const body = await request.json();
     const { status, keterangan, approvedBy } = body;
-    const peminjamanId = parseInt(params.id);
+    const resolvedParams = await params;
+    const peminjamanId = parseInt(resolvedParams.id);
 
     if (!status) {
       return NextResponse.json(

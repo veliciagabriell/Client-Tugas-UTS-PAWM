@@ -15,7 +15,15 @@ export default function AsistenPeminjamanAlatPage() {
     const checkAuth = () => {
       const userData = localStorage.getItem('biomedis_user');
       if (!userData) {
-        router.push('/');
+        // For testing, create mock asisten user
+        const mockAsisten = {
+          id: 5,
+          email: "asisten@test.com",
+          role: "ASISTEN"
+        };
+        localStorage.setItem('biomedis_user', JSON.stringify(mockAsisten));
+        setUser(mockAsisten);
+        setLoading(false);
         return;
       }
 

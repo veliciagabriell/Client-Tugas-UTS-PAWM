@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { ChevronDown, FileText, Clock, CheckCircle, XCircle, Wrench } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -80,14 +80,9 @@ export default function PeminjamanAlatPage() {
     }
   }, []);
 
-  // Fetch data when user is loaded
-  useEffect(() => {
-    if (user) {
-      fetchData();
-    }
-  }, [user]);
-
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
+    if (!user) return; // Guard clause untuk user null
+    
     try {
       setAlatLoading(true);
       
@@ -99,16 +94,103 @@ export default function PeminjamanAlatPage() {
       }
       
       // Fetch peminjaman alat
-      const peminjamanResponse = await fetch('/api/peminjaman-alat');
+      let peminjamanUrl = '/api/peminjaman-alat';
+      
+      // Jika user adalah praktikan, hanya tampilkan peminjaman mereka sendiri
+      if (user && user.role !== 'ASISTEN') {
+        peminjamanUrl += `?userId=${user.id}`;
+      }
+      
+      const peminjamanResponse = await fetch(peminjamanUrl);
       if (peminjamanResponse.ok) {
         const peminjamanData = await peminjamanResponse.json();
-        setPeminjamanAlat(peminjamanData);
+        // Handle new API response format
+        if (peminjamanData.success && Array.isArray(peminjamanData.data)) {
+          setPeminjamanAlat(peminjamanData.data);
+        } else if (Array.isArray(peminjamanData)) {
+          // Fallback for old format
+          setPeminjamanAlat(peminjamanData);
+        } else {
+          console.error('Unexpected response format:', peminjamanData);
+          setPeminjamanAlat([]);
+        }
       }
       
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {
       setAlatLoading(false);
+    }
+  }, [user]);
+
+  // Fetch data when user is loaded
+  useEffect(() => {
+    if (user) {
+      fetchData();
+    }
+  }, [user, fetchData]);
+
+  const handleApprove = async (peminjamanId: number) => {
+    try {
+      console.log('Approving peminjaman with ID:', peminjamanId);
+      const response = await fetch(`/api/peminjaman-alat/${peminjamanId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          status: 'APPROVED',
+          keterangan: 'Disetujui oleh asisten',
+          approvedBy: user?.email || 'asisten'
+        })
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log('Approve response:', result);
+        // Refresh data
+        fetchData();
+        alert('Peminjaman berhasil disetujui!');
+      } else {
+        const error = await response.json();
+        console.error('Error approving:', error);
+        alert('Gagal menyetujui peminjaman: ' + (error.error || 'Unknown error'));
+      }
+    } catch (error) {
+      console.error('Error approving peminjaman:', error);
+      alert('Terjadi error saat menyetujui peminjaman');
+    }
+  };
+
+  const handleReject = async (peminjamanId: number) => {
+    try {
+      console.log('Rejecting peminjaman with ID:', peminjamanId);
+      const response = await fetch(`/api/peminjaman-alat/${peminjamanId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          status: 'REJECTED',
+          keterangan: 'Ditolak oleh asisten',
+          approvedBy: user?.email || 'asisten'
+        })
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log('Reject response:', result);
+        // Refresh data
+        fetchData();
+        alert('Peminjaman berhasil ditolak!');
+      } else {
+        const error = await response.json();
+        console.error('Error rejecting:', error);
+        alert('Gagal menolak peminjaman: ' + (error.error || 'Unknown error'));
+      }
+    } catch (error) {
+      console.error('Error rejecting peminjaman:', error);
+      alert('Terjadi error saat menolak peminjaman');
     }
   };
 
@@ -210,7 +292,24 @@ export default function PeminjamanAlatPage() {
   };
   
   // Array gambar alat yang akan berputar
-  const alatImages = ["/GambarLab1.png", "/GambarLab2.png", "/LandingPic.png"];
+  const alatImages = [
+    "/Biopac.jpg",
+    "/Osiloskop.jpg", 
+    "/GeneratorSinyal.webp",
+    "/PowerSupply.jpg",
+    "/JangkaSorong.jpg",
+    "/mikrometer.jpg"
+  ];
+
+  // Array nama alat yang sesuai dengan gambar
+  const alatNames = [
+    "Biopac",
+    "Osiloskop", 
+    "Generator Sinyal",
+    "Power Supply",
+    "Jangka Sorong",
+    "Mikrometer"
+  ];
 
   // Auto-rotate images setiap 5 detik
   useEffect(() => {
@@ -252,7 +351,7 @@ export default function PeminjamanAlatPage() {
             <Image
               key={image}
               src={image}
-              alt={`Equipment ${index + 1}`}
+              alt={alatNames[index]}
               fill
               className={`object-cover object-center transition-opacity duration-1000 ${
                 index === currentImageIndex ? 'opacity-100' : 'opacity-0'
@@ -392,9 +491,6 @@ export default function PeminjamanAlatPage() {
               <Clock size={20} />
               {user?.role === 'ASISTEN' ? 'Kelola Peminjaman' : 'Status Peminjaman'}
             </motion.button>
-            
-            {/* Extra spacing to fill the sidebar */}
-            <div className="hidden md:block flex-1 min-h-[200px]"></div>
           </motion.div>
         </motion.aside>
 
@@ -517,7 +613,7 @@ export default function PeminjamanAlatPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1.4 }}
                 onSubmit={handleFormSubmit}
-                className="bg-white p-8 rounded-xl shadow-lg max-w-2xl mx-auto"
+                className="bg-white p-8 rounded-xl shadow-lg"
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <div>
@@ -718,6 +814,7 @@ export default function PeminjamanAlatPage() {
                                 <motion.button
                                   whileHover={{ scale: 1.02 }}
                                   whileTap={{ scale: 0.98 }}
+                                  onClick={() => handleApprove(item.id)}
                                   className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
                                 >
                                   Approve
@@ -725,6 +822,7 @@ export default function PeminjamanAlatPage() {
                                 <motion.button
                                   whileHover={{ scale: 1.02 }}
                                   whileTap={{ scale: 0.98 }}
+                                  onClick={() => handleReject(item.id)}
                                   className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
                                 >
                                   Reject

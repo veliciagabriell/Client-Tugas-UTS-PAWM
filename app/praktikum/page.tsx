@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import Footer from '../components/Footer';
+
 
 export default function PraktikumPage() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -71,7 +71,7 @@ export default function PraktikumPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#FAF6EF] flex flex-col text-[#1a1a1a] relative">
+    <div className="bg-[#FAF6EF] text-[#1a1a1a] relative">
       {/* ====== HERO SECTION ====== */}
       <section className="relative h-screen w-full">
         <Image
@@ -188,9 +188,6 @@ export default function PraktikumPage() {
             >
               Aturan Lab
             </motion.a>
-            
-            {/* Extra spacing to fill the sidebar */}
-            <div className="hidden md:block flex-1 min-h-[200px]"></div>
           </motion.div>
         </motion.aside>
 
@@ -296,7 +293,6 @@ export default function PraktikumPage() {
           </div>
         </motion.main>
       </section>
-      <Footer/>
-    </main>
+    </div>
   );
 }

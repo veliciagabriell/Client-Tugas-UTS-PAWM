@@ -41,7 +41,10 @@ export async function GET(request: NextRequest) {
       ]
     });
 
-    return NextResponse.json(peminjamanAlats);
+    return NextResponse.json({
+      success: true,
+      data: peminjamanAlats
+    });
 
   } catch (error) {
     console.error('Get peminjaman alats error:', error);

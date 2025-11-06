@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import Footer from './Footer'
 
 interface TugasAwal {
   id: string;
@@ -224,7 +223,6 @@ const AsistenTugas: React.FC<AsistenTugasProps> = ({ modulId, userRole }) => {
           ))}
         </div>
       )}
-      <Footer/>
     </div>
   );
 };

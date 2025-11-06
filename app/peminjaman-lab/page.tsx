@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { ChevronDown, Calendar, FileText, ChevronLeft, ChevronRight, Clock, CheckCircle, XCircle } from "lucide-react";
 import { motion } from "framer-motion";
-import Footer from "../components/Footer";
+
 
 interface User {
   id: number;
@@ -310,7 +310,7 @@ export default function PeminjamanLabPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#FAF6EF] flex flex-col text-[#1a1a1a] relative">
+    <main className="bg-[#FAF6EF] flex flex-col text-[#1a1a1a] relative">
       {/* ====== HERO SECTION ====== */}
       <section className="relative h-screen w-full">
         <div className="relative w-full h-full">
@@ -949,7 +949,6 @@ export default function PeminjamanLabPage() {
         </div>
       )}
 
-    <Footer/>
     </main>
   );
 }

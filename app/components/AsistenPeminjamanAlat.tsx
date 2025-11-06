@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import Footer from './Footer'
+import React, { useState, useEffect } from 'react';
 
 interface PeminjamanAlat {
   id: number;
@@ -44,11 +43,17 @@ export default function AsistenPeminjamanAlat() {
 
   const fetchPeminjamanAlats = async () => {
     try {
+      console.log('Fetching peminjaman alats...');
       const response = await fetch('/api/peminjaman-alat');
+      console.log('Response status:', response.status);
       const data = await response.json();
+      console.log('Response data:', data);
       
       if (data.success) {
+        console.log('Setting peminjaman alats:', data.data);
         setPeminjamanAlats(data.data);
+      } else {
+        console.error('API returned success=false:', data);
       }
     } catch (error) {
       console.error('Error fetching peminjaman alats:', error);
@@ -267,7 +272,6 @@ export default function AsistenPeminjamanAlat() {
           ))}
         </div>
       )}
-      <Footer/>
     </div>
   );
 }
