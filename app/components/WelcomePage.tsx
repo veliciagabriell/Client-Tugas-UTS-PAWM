@@ -426,14 +426,14 @@ export default function WelcomePage({ user, onLogout }: WelcomePageProps) {
                 className="md:w-full"
                 >
                   <Image
-                    src="/Agung-Wahyu-Thumbnail.jpg"
-                    alt="agung-wahyu"
+                    src="/people1.jpeg"
+                    alt="people1"
                     width={250}
                     height={250}
                     className="rounded-lg object-cover "
                   />
                   <p className="text-gray-700">
-                      Agung Wahyu Setiawan, Dr. Ir. S.T., M.T., I.P.M., ASEAN Eng.
+                      Donny Doner
                   </p>
               </motion.div>
 
@@ -444,14 +444,14 @@ export default function WelcomePage({ user, onLogout }: WelcomePageProps) {
                 className="md:w-full"
                 >
                   <Image
-                    src="/Allya-Paramita-Thumbnail.jpg"
-                    alt="allya-paramita"
+                    src="/people2.jpeg"
+                    alt="people2"
                     width={250}
                     height={250}
                     className="rounded-lg object-cover "
                   />
 
-                  <p className="text-gray-700"> Allya Paramita Koesoema, S.T., M.T., Ph.D.</p>
+                  <p className="text-gray-700"> Minnie Bruce</p>
               </motion.div>
 
               <motion.div
@@ -461,14 +461,14 @@ export default function WelcomePage({ user, onLogout }: WelcomePageProps) {
                 className="md:w-full"
                 >
                   <Image
-                    src="/Andriyan-Bayu-Thumbnail.jpg"
-                    alt="andriyan-bayu"
+                    src="/people3.jpeg"
+                    alt="people3"
                     width={250}
                     height={250}
                     className="rounded-lg object-cover "
                   />
 
-                  <p className="text-gray-700"> Prof. Andriyan Bayu Suksmono, M.T., Ph.D.</p>
+                  <p className="text-gray-700"> Grace Spencer</p>
               </motion.div>
 
               <motion.div
@@ -478,14 +478,14 @@ export default function WelcomePage({ user, onLogout }: WelcomePageProps) {
                 className="md:w-full"
                 >
                   <Image
-                    src="/Astri-Handayani-Thumbnail.jpg"
-                    alt="astri-handayani"
+                    src="/people4.jpeg"
+                    alt="people4"
                     width={250}
                     height={250}
                     className="rounded-lg object-cover "
                   />
 
-                  <p className="text-gray-700"> Astri Handayani, IR. S.T., M.T.</p>
+                  <p className="text-gray-700"> Bruno Eliott</p>
               </motion.div>
 
               <motion.div
@@ -495,120 +495,16 @@ export default function WelcomePage({ user, onLogout }: WelcomePageProps) {
                 className="md:w-full"
                 >
                   <Image
-                    src="/M-Shiddiq-Thumbnail.jpg"
-                    alt="shiddiq"
+                    src="/people5.jpeg"
+                    alt="people5"
                     width={250}
                     height={250}
                     className="rounded-lg object-cover "
                   />
 
-                  <p className="text-gray-700"> M Shiddiq Sayyid Hashuro, S.T., M.Eng., Ph.D.</p>
+                  <p className="text-gray-700"> Kenneth Simon</p>
               </motion.div>
 
-            </div>
-
-            <div className="flex flex-col md:flex-row-reverse items-center gap-10">
-              <motion.div
-                initial={{opacity:0, x:-20}}
-                animate={{opacity:1, x:0}}
-                transition={{duration: 0.8, delay:0.2}}
-                className="md:w-full"
-                >
-                  <Image
-                    src="/Beni-RIo-Thumbnail.jpg"
-                    alt="beni-rio"
-                    width={250}
-                    height={250}
-                    className="rounded-lg object-cover "
-                  />
-
-                  <p className="text-gray-700"> Beni Rio Hermanto, DR. S.T.,M.M.</p>
-              </motion.div>
-
-              <motion.div
-                initial={{opacity:0, x:-20}}
-                animate={{opacity:1, x:0}}
-                transition={{duration: 0.8, delay:0.2}}
-                className="md:w-full"
-                >
-                  <Image
-                    src="/Doni-Danudirjo-Thumbnail.jpg"
-                    alt="doni"
-                    width={250}
-                    height={250}
-                    className="rounded-lg object-cover "
-                  />
-
-                  <p className="text-gray-700"> Donny Danudirdjo, S.T., M.T., Ph.D.</p>
-              </motion.div>
-
-              <motion.div
-                initial={{opacity:0, x:-20}}
-                animate={{opacity:1, x:0}}
-                transition={{duration: 0.8, delay:0.2}}
-                className="md:w-full"
-                >
-                  <Image
-                    src="/Habibur-M-Thumbnail.jpg"
-                    alt="habibur"
-                    width={250}
-                    height={250}
-                    className="rounded-lg object-cover "
-                  />
-
-                  <p className="text-gray-700"> Habibur Muhaimin, IR. S.T., M.Sc.</p>
-              </motion.div>
-
-              <motion.div
-                initial={{opacity:0, x:-20}}
-                animate={{opacity:1, x:0}}
-                transition={{duration: 0.8, delay:0.2}}
-                className="md:w-full"
-                >
-                  <Image
-                    src="/Hasballah-Z-Thumbnail.jpg"
-                    alt="hasballah"
-                    width={250}
-                    height={250}
-                    className="rounded-lg object-cover "
-                  />
-
-                  <p className="text-gray-700"> Hasballah Zakaria, DR. S.T., M.Sc.</p>
-              </motion.div>
-
-              <motion.div
-                initial={{opacity:0, x:-20}}
-                animate={{opacity:1, x:0}}
-                transition={{duration: 0.8, delay:0.2}}
-                className="md:w-full"
-                >
-                  <Image
-                    src="/Isa-Anshori-Thumbnail.jpg"
-                    alt="isa"
-                    width={250}
-                    height={250}
-                    className="rounded-lg object-cover "
-                  />
-
-                  <p className="text-gray-700"> Isa Anshori, S.T., M.Eng., Ph.D</p>
-              </motion.div>
-
-              <motion.div
-                initial={{opacity:0, x:-20}}
-                animate={{opacity:1, x:0}}
-                transition={{duration: 0.8, delay:0.2}}
-                className="md:w-full"
-                >
-                  <Image
-                    src="/Widyawardana-Thumbnail.jpg"
-                    alt="widya"
-                    width={250}
-                    height={250}
-                    className="rounded-lg object-cover "
-                  />
-
-                  <p className="text-gray-700"> Widyawardana Adiprawita, Dr. S.T., M.T.</p>
-              </motion.div>
             </div>
 
             <div className="flex flex-col md:flex-row-reverse items-center gap-10">

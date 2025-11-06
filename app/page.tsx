@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useState, useRef } from "react";
 import { ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
+import Footer from "./components/Footer";
 
 export default function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -26,7 +27,7 @@ export default function HomePage() {
         />
 
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0, delay: 0.3 }}
@@ -53,7 +54,7 @@ export default function HomePage() {
           className="bg-[#FAF6EF] px-30 py-12 w-full md:w-1/4 h-fit"
         >
           <div className="flex justify-between items-center md:block">
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.7 }}
@@ -92,15 +93,15 @@ export default function HomePage() {
                   if (item === "About us") {
                     aboutUsRef.current?.scrollIntoView({ behavior: 'smooth' });
                   } else if (item === "Research") {
-                    researchRef.current?.scrollIntoView({ behavior: 'smooth'});
+                    researchRef.current?.scrollIntoView({ behavior: 'smooth' });
                   } else if (item === "Activities") {
-                    activitiesRef.current?.scrollIntoView({ behavior: 'smooth'});
+                    activitiesRef.current?.scrollIntoView({ behavior: 'smooth' });
                   } else if (item === "Lecturers") {
-                    lecturersRef.current?.scrollIntoView({ behavior: 'smooth'});
+                    lecturersRef.current?.scrollIntoView({ behavior: 'smooth' });
                   } else if (item === "Assistants") {
-                    assistantsRef.current?.scrollIntoView({ behavior: 'smooth'});
+                    assistantsRef.current?.scrollIntoView({ behavior: 'smooth' });
                   } else if (item === "Contacts") {
-                    contactUsRef.current?.scrollIntoView({ behavior: 'smooth'});
+                    contactUsRef.current?.scrollIntoView({ behavior: 'smooth' });
                   }
                 }}
                 style={{ cursor: 'pointer' }}
@@ -117,23 +118,22 @@ export default function HomePage() {
         </motion.aside>
 
         {/* ====== MAIN CONTENT ====== */}
-        <motion.main 
+        <motion.main
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
           className="flex-1 relative mt-10 md:mt-30 bg-[#FAF6EF]"
         >
           <div className="w-full md:full mx-auto flex flex-col gap-5">
-            
             {/* Welcome Section */}
             <div className="flex flex-col md:flex-row items-center gap-6">
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
                 className="md:w-1/2 text-center md:text-left"
               >
-                <motion.h3 
+                <motion.h3
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 1.0 }}
@@ -141,13 +141,13 @@ export default function HomePage() {
                 >
                   Welcome to Laboratorium Biomedika
                 </motion.h3>
-                <motion.p 
+                <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 1.2 }}
                   className="text-gray-700 text-base md:text-lg"
                 >
-                  Laboratorium Teknik Biomedika (Lab EB) adalah fasilitas inti di bawah Sekolah Teknik Elektro dan Informatika (STEI) Institut Teknologi Bandung (ITB) yang berperan penting dalam mendukung kegiatan akademik dan penelitian di Jurusan Teknik Biomedis.
+                  Laboratorium Teknik Biomedis (Lab EB) adalah fasilitas inti di bawah Sekolah Teknik Elektro dan Informatika (STEI) Institut Teknologi Bandung (ITB) yang berperan penting dalam mendukung kegiatan akademik dan penelitian di Jurusan Teknik Biomedis.
                 </motion.p>
               </motion.div>
 
@@ -164,16 +164,13 @@ export default function HomePage() {
 
             {/* About Us Section */}
             <div className="flex flex-col md:flex-row-reverse items-center gap-10">
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: 40 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 1.0 }}
                 className="md:w-1/2 flex justify-center"
               >
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
-                >
+                <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}>
                   <motion.div
                     ref={aboutUsRef}
                     initial={{ opacity: 0, x: 40, y: 40 }}
@@ -181,7 +178,7 @@ export default function HomePage() {
                     transition={{ duration: 0.8 }}
                     className="mt- px-6 -ml-15 mr-5"
                   >
-                    <motion.h3 
+                    <motion.h3
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: 1.0 }}
@@ -190,7 +187,7 @@ export default function HomePage() {
                       About Us
                     </motion.h3>
 
-                    <motion.p 
+                    <motion.p
                       initial={{ opacity: 0, y: -20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: 1.2 }}
@@ -203,9 +200,9 @@ export default function HomePage() {
               </motion.div>
 
               <motion.div
-                initial={{opacity: 0, x:-20}}
-                animate={{opacity: 1, x: 0}}
-                transition={{duration: 0.8, delay: 0.2}}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
                 className="md:w-1/2"
               >
                 <Image
@@ -221,9 +218,9 @@ export default function HomePage() {
             {/* Research Section */}
             <div className="flex flex-col md:flex-row-reverse items-center gap-10">
               <motion.div
-                initial={{opacity: 0, x:-20}}
-                animate={{opacity: 1, x: 0}}
-                transition={{duration: 0.8, delay: 0.2}}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
                 className="md:w-1/2"
               >
                 <Image
@@ -235,16 +232,13 @@ export default function HomePage() {
                 />
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: 40 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 1.0 }}
                 className="md:w-1/2 flex justify-center"
               >
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
-                >
+                <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}>
                   <motion.div
                     ref={researchRef}
                     initial={{ opacity: 0, x: 40, y: 40 }}
@@ -252,7 +246,7 @@ export default function HomePage() {
                     transition={{ duration: 0.8 }}
                     className="mt- px-6 -ml-15 mr-5"
                   >
-                    <motion.h3 
+                    <motion.h3
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: 1.0 }}
@@ -261,7 +255,7 @@ export default function HomePage() {
                       Research
                     </motion.h3>
 
-                    <motion.p 
+                    <motion.p
                       initial={{ opacity: 0, y: -20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: 1.2 }}
@@ -276,16 +270,13 @@ export default function HomePage() {
 
             {/* Activities Section */}
             <div className="flex flex-col md:flex-row-reverse items-center gap-10">
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: 40 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 1.0 }}
                 className="md:w-1/2 flex justify-center"
               >
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
-                >
+                <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}>
                   <motion.div
                     ref={activitiesRef}
                     initial={{ opacity: 0, x: 40, y: 40 }}
@@ -293,7 +284,7 @@ export default function HomePage() {
                     transition={{ duration: 0.8 }}
                     className="mt- px-6 -ml-15 mr-5"
                   >
-                    <motion.h3 
+                    <motion.h3
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: 1.0 }}
@@ -302,7 +293,7 @@ export default function HomePage() {
                       Activities
                     </motion.h3>
 
-                    <motion.p 
+                    <motion.p
                       initial={{ opacity: 0, y: -20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: 1.2 }}
@@ -315,9 +306,9 @@ export default function HomePage() {
               </motion.div>
 
               <motion.div
-                initial={{opacity: 0, x:-20}}
-                animate={{opacity: 1, x: 0}}
-                transition={{duration: 0.8, delay: 0.2}}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
                 className="md:w-1/2"
               >
                 <Image
@@ -333,12 +324,12 @@ export default function HomePage() {
             {/* Lecturers Section */}
             <div className="flex flex-col md:flex-row-reverse items-center gap-10">
               <motion.div
-                initial={{opacity: 0, x:-20}}
-                animate={{opacity: 1, x: 0}}
-                transition={{duration: 0.8, delay: 0.2}}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
                 className="w-full"
               >
-                <motion.h3 
+                <motion.h3
                   ref={lecturersRef}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -350,93 +341,133 @@ export default function HomePage() {
               </motion.div>
             </div>
 
-            {/* Lecturers Row 1 */}
-            <div className="grid grid-cols-2 md:grid-cols-6 gap-6">
-              {[
-                { src: "/Agung-Wahyu-Thumbnail.jpg", name: "Agung Wahyu Setiawan, Dr. Ir. S.T., M.T., I.P.M., ASEAN Eng." },
-                { src: "/Allya-Paramita-Thumbnail.jpg", name: "Allya Paramita Koesoema, S.T., M.T., Ph.D." },
-                { src: "/Andriyan-Bayu-Thumbnail.jpg", name: "Prof. Andriyan Bayu Suksmono, M.T., Ph.D." },
-                { src: "/Astri-Handayani-Thumbnail.jpg", name: "Astri Handayani, IR. S.T., M.T." },
-                { src: "/M-Shiddiq-Thumbnail.jpg", name: "M Shiddiq Sayyid Hashuro, S.T., M.Eng., Ph.D." },
-                { src: "/Beni-RIo-Thumbnail.jpg", name: "Beni Rio Hermanto, DR. S.T.,M.M." }
-              ].map((lecturer, index) => (
+              <div className="flex flex-col md:flex-row-reverse items-center gap-10">
                 <motion.div
-                  key={index}
+                  initial={{opacity: 0, x:-20}}
+                  animate={{opacity: 1, x: 0}}
+                  transition={{duration: 0.8, delay: 0.2}}
+                  className="w-full" >
+  
+                  </motion.div>
+                <motion.div
                   initial={{opacity:0, x:-20}}
                   animate={{opacity:1, x:0}}
-                  transition={{duration: 0.8, delay:0.2 + (index * 0.1)}}
-                  className="text-center"
-                >
-                  <Image
-                    src={lecturer.src}
-                    alt={lecturer.name}
-                    width={250}
-                    height={250}
-                    className="rounded-lg object-cover mx-auto mb-3"
-                  />
-                  <p className="text-gray-700 text-sm">{lecturer.name}</p>
+                  transition={{duration: 0.8, delay:0.2}}
+                  className="md:w-full"
+                  >
+                    <Image
+                      src="/people1.jpeg"
+                      alt="people1"
+                      width={250}
+                      height={250}
+                      className="rounded-lg object-cover "
+                    />
+                    <p className="text-gray-700">
+                        Donny Doner
+                    </p>
                 </motion.div>
-              ))}
-            </div>
-
-            {/* Lecturers Row 2 */}
-            <div className="grid grid-cols-2 md:grid-cols-6 gap-6">
-              {[
-                { src: "/Doni-Danudirjo-Thumbnail.jpg", name: "Donny Danudirdjo, S.T., M.T., Ph.D." },
-                { src: "/Habibur-M-Thumbnail.jpg", name: "Habibur Muhaimin, IR. S.T., M.Sc." },
-                { src: "/Hasballah-Z-Thumbnail.jpg", name: "Hasballah Zakaria, DR. S.T., M.Sc." },
-                { src: "/Isa-Anshori-Thumbnail.jpg", name: "Isa Anshori, S.T., M.Eng., Ph.D" },
-                { src: "/Widyawardana-Thumbnail.jpg", name: "Widyawardana Adiprawita, Dr. S.T., M.T." }
-              ].map((lecturer, index) => (
+  
                 <motion.div
-                  key={index}
                   initial={{opacity:0, x:-20}}
                   animate={{opacity:1, x:0}}
-                  transition={{duration: 0.8, delay:0.8 + (index * 0.1)}}
-                  className="text-center"
-                >
-                  <Image
-                    src={lecturer.src}
-                    alt={lecturer.name}
-                    width={250}
-                    height={250}
-                    className="rounded-lg object-cover mx-auto mb-3"
-                  />
-                  <p className="text-gray-700 text-sm">{lecturer.name}</p>
+                  transition={{duration: 0.8, delay:0.2}}
+                  className="md:w-full"
+                  >
+                    <Image
+                      src="/people2.jpeg"
+                      alt="people2"
+                      width={250}
+                      height={250}
+                      className="rounded-lg object-cover "
+                    />
+  
+                    <p className="text-gray-700"> Minnie Bruce</p>
                 </motion.div>
-              ))}
-            </div>
+  
+                <motion.div
+                  initial={{opacity:0, x:-20}}
+                  animate={{opacity:1, x:0}}
+                  transition={{duration: 0.8, delay:0.2}}
+                  className="md:w-full"
+                  >
+                    <Image
+                      src="/people3.jpeg"
+                      alt="people3"
+                      width={250}
+                      height={250}
+                      className="rounded-lg object-cover "
+                    />
+  
+                    <p className="text-gray-700"> Grace Spencer</p>
+                </motion.div>
+  
+                <motion.div
+                  initial={{opacity:0, x:-20}}
+                  animate={{opacity:1, x:0}}
+                  transition={{duration: 0.8, delay:0.2}}
+                  className="md:w-full"
+                  >
+                    <Image
+                      src="/people4.jpeg"
+                      alt="people4"
+                      width={250}
+                      height={250}
+                      className="rounded-lg object-cover "
+                    />
+  
+                    <p className="text-gray-700"> Bruno Eliott</p>
+                </motion.div>
+  
+                <motion.div
+                  initial={{opacity:0, x:-20}}
+                  animate={{opacity:1, x:0}}
+                  transition={{duration: 0.8, delay:0.2}}
+                  className="md:w-full"
+                  >
+                    <Image
+                      src="/people5.jpeg"
+                      alt="people5"
+                      width={250}
+                      height={250}
+                      className="rounded-lg object-cover "
+                    />
+  
+                    <p className="text-gray-700"> Kenneth Simon</p>
+                </motion.div>
+  
+              </div>
 
-            {/* Assistants Section */}
             <div className="flex flex-col md:flex-row-reverse items-center gap-10">
               <motion.div
                 initial={{opacity: 0, x:-20}}
                 animate={{opacity: 1, x: 0}}
                 transition={{duration: 0.8, delay: 0.2}}
-                className="w-full"
-              >
-                <motion.h3 
-                  ref={assistantsRef}
+                className="w-full" >
+              
+                  <motion.h3 
+                  ref = {assistantsRef}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 1.0 }}
-                  className="text-2xl md:text-3xl font-bold text-[#E64A19] mb-6"
-                >
+                    className="text-2xl md:text-3xl font-bold text-[#E64A19] mb-6"
+                  >
                   Assistants
-                </motion.h3>
-                <p className="text-gray-700">Coming soon!</p>
+                  </motion.h3>
+
+                  <p className="text-gray-700"> Coming soon! </p>
+
               </motion.div>
             </div>
-
+            
             {/* Contacts Section */}
             <div className="flex flex-col md:flex-row-reverse items-center gap-10 pb-10">
               <motion.div
-                initial={{opacity: 0, x:-20}}
-                animate={{opacity: 1, x: 0}}
-                transition={{duration: 0.8, delay: 0.2}}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
                 className="w-full"
               >
-                <motion.h3 
+                <motion.h3
                   ref={contactUsRef}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -448,10 +479,11 @@ export default function HomePage() {
                 <p className="text-gray-700">lab.eb@itb.ac.id</p>
               </motion.div>
             </div>
-
           </div>
         </motion.main>
       </section>
+
+      <Footer/>
     </main>
   );
 }
